@@ -1,0 +1,7 @@
+:root{
+  @apply bg-stone-800 text-slate-200;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
