@@ -1,0 +1,62 @@
+[
+    {
+        "note": "C4",
+        "isBlackKey": false,
+        "keyboardKey": "z"
+    },
+    {
+        "note": "C#4",
+        "isBlackKey": true,
+        "keyboardKey": "s"
+    },
+    {
+        "note": "D4",
+        "isBlackKey": false,
+        "keyboardKey": "x"
+    },
+    {
+        "note": "D#4",
+        "isBlackKey": true,
+        "keyboardKey": "d"
+    },
+    {
+        "note": "E4",
+        "isBlackKey": false,
+        "keyboardKey": "c"
+    },
+    {
+        "note": "F4",
+        "isBlackKey": false,
+        "keyboardKey": "v"
+    },
+    {
+        "note": "F#4",
+        "isBlackKey": true,
+        "keyboardKey": "g"
+    },
+    {
+        "note": "G4",
+        "isBlackKey": false,
+        "keyboardKey": "b"
+    },
+    {
+        "note": "G#4",
+        "isBlackKey": true,
+        "keyboardKey": "h"
+    },
+    {
+        "note": "A4",
+        "isBlackKey": false,
+        "keyboardKey": "n"
+    },
+    {
+        "note": "A#4",
+        "isBlackKey": true,
+        "keyboardKey": "j"
+    },
+    {
+        "note": "B4",
+        "isBlackKey": false,
+        "keyboardKey": "m"
+    }
+]

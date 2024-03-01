@@ -1,11 +1,41 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState} from 'react'
 import { useToneJs } from '../hooks/useTonejs'
 import PropTypes from "prop-types";
+import notesData from '../data/notes.json'
 
-const PianoKey = ({isBlack, note}) => {
-  let refKey = useRef();
+// eslint-disable-next-line react/display-name
+const PianoKey = React.memo(({isBlackKey, note}) => {
+  let buttonRef = useRef();
   const {makeSound} = useToneJs();
+  const [activeKey, setActiveKey] = useState('')
 
+  useEffect(() => {
+    window.addEventListener('keypress', handleKeyPressEvent);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPressEvent)
+      console.log("event removed")
+    }
+  }, []);
+
+  const handleKeyPressEvent = e => {
+
+    /* if(e.key === "z" && note == "C4"){
+      //makeSound('C4')
+      buttonRef.current.click();
+    } */
+    let noteFound = notesData.find(item => item.keyboardKey === e.key && item.note === note);
+
+    if(noteFound){
+      makeSound(note)
+      //buttonRef.current.click();
+      setActiveKey('bg-red-200')
+      setTimeout(() => {
+        setActiveKey('')
+      }, 200);
+    }
+  
+}
 
   const onKeyClick = () => {
         console.log("onKeyClick")
@@ -13,23 +43,23 @@ const PianoKey = ({isBlack, note}) => {
   }
 
   const computeIsBlackKey = () => {
-    if(isBlack){
-        return "h-28 w-14 bg-slate-200 active:bg-neutral-500";
+    if(isBlackKey){
+        return "h-28 w-14 bg-slate-200 text-black active:bg-neutral-500";
     }
     return "h-40 w-14 bg-neutral-500 active:bg-neutral-300";
   }
 
   return (
     <div 
-        ref={refKey}
-        className={computeIsBlackKey()}
+        ref={buttonRef}
+        className={`${computeIsBlackKey()} ${activeKey}`}
         onClick={onKeyClick}
     >{note}</div>
   )
-}
+})
 
 PianoKey.propTypes = {
-    isBlack: PropTypes.bool,
+    isBlackKey: PropTypes.bool,
     note: PropTypes.string.isRequired
 };
 
