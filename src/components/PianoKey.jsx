@@ -29,7 +29,11 @@ const PianoKey = React.memo(({isBlackKey, note}) => {
     if(noteFound){
       makeSound(note)
       //buttonRef.current.click();
-      setActiveKey('bg-red-200')
+      if(!isBlackKey){
+        setActiveKey('bg-red-200')
+      }else{
+        setActiveKey('bg-red-300')
+      }
       setTimeout(() => {
         setActiveKey('')
       }, 200);
