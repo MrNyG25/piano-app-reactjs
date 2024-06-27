@@ -45,11 +45,11 @@ const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
           clsx(
             'cursor-pointer rounded-sm',
             {
-              'h-28 w-16 bg-black text-white active:bg-neutral-500': isBlackKey,
+              'h-28 w-14 bg-black text-white active:bg-neutral-500': isBlackKey,
               'bg-red-600': activeKey && isBlackKey
             },
             {
-              'h-40 w-16 bg-slate-100 text-black active:bg-neutral-500': !isBlackKey,
+              'h-48 w-16 bg-slate-100 text-black active:bg-neutral-500': !isBlackKey,
               'bg-red-600 text-white': activeKey && !isBlackKey
             }
           )
