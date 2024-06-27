@@ -6,7 +6,7 @@ import { clsx } from 'clsx';
 
 
 // eslint-disable-next-line react/display-name
-const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
+const PianoKey = React.memo(({isBlackKey, note, keyboardKey, showNotes, showKeyboardBindinds}) => {
   let buttonRef = useRef();
   const {makeSound} = useToneJs();
   const [activeKey, setActiveKey] = useState(false)
@@ -43,7 +43,7 @@ const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
         ref={buttonRef}
         className={
           clsx(
-            'cursor-pointer rounded-sm',
+            'flex-row cursor-pointer rounded-sm',
             {
               'h-28 w-14 bg-black text-white active:bg-neutral-500': isBlackKey,
               'bg-red-600': activeKey && isBlackKey
@@ -56,8 +56,9 @@ const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
         }
         onClick={onKeyClick}
     >
-      <span className="font-medium">{note}</span>
-     {/*  <span>{keyboardKey}</span> */}
+     {showNotes && <span className="font-medium">{note}</span>}
+     <br />
+     {showKeyboardBindinds && <span className="font-bold text-xl ml-1">{keyboardKey}</span>}
     </div>
   )
 })
@@ -65,7 +66,9 @@ const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
 PianoKey.propTypes = {
     isBlackKey: PropTypes.bool,
     note: PropTypes.string.isRequired,
-    keyboardKey: PropTypes.string.isRequired
+    keyboardKey: PropTypes.string.isRequired,
+    showNotes: PropTypes.bool.isRequired,
+    showKeyboardBindinds: PropTypes.bool.isRequired
 };
 
 
