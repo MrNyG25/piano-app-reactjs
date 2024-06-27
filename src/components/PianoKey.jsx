@@ -2,12 +2,14 @@ import React, { useEffect, useRef, useState} from 'react'
 import { useToneJs } from '../hooks/useTonejs'
 import PropTypes from "prop-types";
 import notesData from '../data/notes.json'
+import { clsx } from 'clsx';
+
 
 // eslint-disable-next-line react/display-name
-const PianoKey = React.memo(({isBlackKey, note}) => {
+const PianoKey = React.memo(({isBlackKey, note, keyboardKey}) => {
   let buttonRef = useRef();
   const {makeSound} = useToneJs();
-  const [activeKey, setActiveKey] = useState('')
+  const [activeKey, setActiveKey] = useState(false)
 
   useEffect(() => {
     window.addEventListener('keypress', handleKeyPressEvent);
@@ -24,41 +26,46 @@ const PianoKey = React.memo(({isBlackKey, note}) => {
 
     if(noteFound){
       makeSound(note)
-      if(!isBlackKey){
-        setActiveKey('bg-red-200')
-      }else{
-        setActiveKey('bg-red-300')
-      }
+      setActiveKey(true)
       setTimeout(() => {
-        setActiveKey('')
+        setActiveKey(false)
       }, 200);
     }
 }
 
   const onKeyClick = () => {
-        console.log("onKeyClick")
-        makeSound(note)
-  }
-
-  const computeIsBlackKey = () => {
-    if(isBlackKey){
-        return "h-28 w-14 bg-slate-200 text-black active:bg-neutral-500";
-    }
-    return "h-40 w-14 bg-neutral-500 active:bg-neutral-300";
+    console.log("onKeyClick")
+    makeSound(note)
   }
 
   return (
     <div
         ref={buttonRef}
-        className={`${computeIsBlackKey()} ${activeKey}`}
+        className={
+          clsx(
+            'cursor-pointer rounded-sm',
+            {
+              'h-28 w-16 bg-black text-white active:bg-neutral-500': isBlackKey,
+              'bg-red-600': activeKey && isBlackKey
+            },
+            {
+              'h-40 w-16 bg-slate-100 text-black active:bg-neutral-500': !isBlackKey,
+              'bg-red-600 text-white': activeKey && !isBlackKey
+            }
+          )
+        }
         onClick={onKeyClick}
-    >{note}</div>
+    >
+      <span className="font-medium">{note}</span>
+     {/*  <span>{keyboardKey}</span> */}
+    </div>
   )
 })
 
 PianoKey.propTypes = {
     isBlackKey: PropTypes.bool,
-    note: PropTypes.string.isRequired
+    note: PropTypes.string.isRequired,
+    keyboardKey: PropTypes.string.isRequired
 };
 
 

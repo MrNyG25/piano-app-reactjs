@@ -5,7 +5,7 @@ import Piano from './pages/Piano'
 function App() {
 
   return (
-      <Piano  className="h-full"/>
+      <Piano />
   )
 }
 
