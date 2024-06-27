@@ -17,9 +17,6 @@ export function useToneJs() {
             baseUrl: "https://tonejs.github.io/audio/salamander/",
         }).toDestination();
         
-        /* Tone.loaded().then(() => {
-            sampler.triggerAttackRelease(["Eb3", "G4", "Bb4"], 4);
-        }) */
     }, [])
 
     const makeSound = (note = "G4") => {

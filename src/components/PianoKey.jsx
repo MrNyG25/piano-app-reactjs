@@ -20,15 +20,10 @@ const PianoKey = React.memo(({isBlackKey, note}) => {
 
   const handleKeyPressEvent = e => {
 
-    /* if(e.key === "z" && note == "C4"){
-      //makeSound('C4')
-      buttonRef.current.click();
-    } */
     let noteFound = notesData.find(item => item.keyboardKey === e.key && item.note === note);
 
     if(noteFound){
       makeSound(note)
-      //buttonRef.current.click();
       if(!isBlackKey){
         setActiveKey('bg-red-200')
       }else{
@@ -38,7 +33,6 @@ const PianoKey = React.memo(({isBlackKey, note}) => {
         setActiveKey('')
       }, 200);
     }
-  
 }
 
   const onKeyClick = () => {
@@ -54,7 +48,7 @@ const PianoKey = React.memo(({isBlackKey, note}) => {
   }
 
   return (
-    <div 
+    <div
         ref={buttonRef}
         className={`${computeIsBlackKey()} ${activeKey}`}
         onClick={onKeyClick}

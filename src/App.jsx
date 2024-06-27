@@ -5,11 +5,7 @@ import Piano from './pages/Piano'
 function App() {
 
   return (
-    <>
-      <Piano  
-        scales={[4,5]}
-      />
-    </>
+      <Piano  className="h-full"/>
   )
 }
 
